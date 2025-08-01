@@ -1,0 +1,24 @@
+/* src/styles.css — aggregator so components don't change imports */
+@import "./styles/base.css";
+@import "./styles/map.css";
+@import "./styles/locationPicker.css";
+@import "./styles/sidebar.css";
+
+h1, h2, h3, h4, h5, h6{
+  margin: 0;
+  font-weight: 600; /* adjust globally if you like */
+}
+
+p {
+  margin: 0;
+  font-weight: 400; /* normal weight */
+}
+
+ul {
+    margin: 0 !important;
+}
+
+section div{
+    display: flex;
+    flex-direction: column;
+}

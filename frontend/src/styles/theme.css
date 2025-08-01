@@ -1,0 +1,30 @@
+/* src/styles/theme.css  */
+
+:root{
+  /* neutrals */
+  --bg:#e5e7eb;
+  --fg:#111827;
+  --fg-muted:#6b7280;
+  --white:#FAF9F6;
+
+  --card:#f9fafb;
+  --line:#e5e7eb;
+
+  /* brand & semantic */
+  --brand:#53c653;
+  --danger:#ef4444;
+  --success:#14b8a6;
+
+  /* accent used by map buttons */
+  --accent:#facc15;
+  --accent-fg:#111827;
+
+  /* glass panels */
+  --glass:rgba(255,255,255,.85);   /* default */
+  --glass-hover:rgba(255,255,255,.92); /* slightly stronger for :hover */
+
+  /* elevation */
+  --shadow-sm:0 6px 16px rgba(0,0,0,.10);
+  --shadow-md:0 12px 28px rgba(0,0,0,.14);
+  --shadow-lg:0 16px 40px rgba(0,0,0,.15);
+}

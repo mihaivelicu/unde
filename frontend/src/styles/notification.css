@@ -1,0 +1,39 @@
+/* src/styles/notification.css */
+
+@import "./theme.css";
+
+.notification {
+  position: fixed;
+  /* Position it above the bottom FAB */
+  top: 90px;
+  left: 50%;
+  
+  /* Start hidden below the screen */
+  transform: translate(-50%, 150%);
+  opacity: 0;
+
+  padding: 12px 20px;
+  background: var(--fg);
+  color: var(--bg);
+  border-radius: 9999px;
+  box-shadow: var(--shadow-lg);
+  font-weight: 600;
+  font-size: 15px;
+  
+  /* Ensure it's on top of everything */
+  z-index: 9999;
+  
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
+}
+
+/* This class makes it slide into view */
+.notification.visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.notification .content {
+  white-space: nowrap;
+}

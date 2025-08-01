@@ -1,0 +1,66 @@
+/* src/styles/groupSettings.css */
+
+@import "./theme.css";
+
+/* ── overlay & panel ── */
+.gs-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.30); backdrop-filter: blur(2px); z-index: 900; }
+.gs-wrap   { position: fixed; inset: 0; display: flex; justify-content: flex-end; pointer-events: none; z-index: 901; }
+.gs-sheet  { pointer-events: auto; height: 100%; width: min(600px, 100%); display: flex; flex-direction: column; background: var(--glass); backdrop-filter: blur(28px); border-top-left-radius: var(--corner); border-top-right-radius: var(--corner); box-shadow: 0 -20px 60px rgba(0,0,0,.18); }
+
+/* ── header ── */
+.gs-h      { padding: 16px 24px 10px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,.05); }
+.gs-h h2   { margin: 0; font: 600 18px/1 'Inter', sans-serif; letter-spacing: -0.01em; color: var(--fg); }
+.close     { width:32px; height:32px; border:none; border-radius:50%; background:transparent; color:#6b7280; font-size:28px; display:grid; place-items:center; cursor:pointer; transition:.15s; }
+.close:hover { background:rgba(0,0,0,.06); color:var(--fg); }
+.close:active{ transform:scale(.93); }
+
+/* ── body ── */
+.gs-b      { flex:1 1 auto; overflow:auto; padding:48px 24px 24px 24px; display:flex; flex-direction:column; gap:22px; }
+
+/* inline field: label | input/url-wrapper | ✓ Saved */
+.gs-field { display:grid; grid-template-columns: 12% 65% 23%; align-items:center; column-gap:10px; }
+.gs-field > span { font:500 14px 'Inter',sans-serif; color:var(--fg-muted); margin:0; }
+
+/* URL input area */
+.url-input-wrapper { display:flex; flex-direction: row; align-items:center; width:100%; }
+.url-input-wrapper:focus-within { border-bottom-color: var(--brand); }
+.url-prefix { margin:0; font:500 14px 'Inter',sans-serif; color:var(--fg-muted); white-space:nowrap; }
+.url-input-wrapper .underline { background:transparent; font:500 14px 'Inter',sans-serif; color:var(--fg); flex:1; margin:0; }
+.url-input-wrapper .underline:focus { outline:none; }
+
+/* Underline inputs (name) */
+.underline { border:none; border-bottom:1.8px solid #d1d5db; background:transparent;font:500 15px 'Inter',sans-serif; color:var(--fg); width:100%; }
+.underline:focus { outline:none; border-bottom-color:var(--brand); }
+
+
+/* divider & section title */
+.divider   { height:1px; background:#e5e7eb; opacity:.7; margin-block:2px; }
+.sec       { margin-top:48px; font:600 15px 'Inter',sans-serif; color:var(--fg); }
+
+/* ── status rows ── */
+.row { display:grid; grid-template-columns: 60% 10% 20% 10%; align-items:center }
+.row-input { width: 90%; border:none; border-bottom:1.6px solid #d1d5db; background:transparent; padding:6px 4px; font:500 15px 'Inter',sans-serif; color:var(--fg); }
+.row-input:focus { outline:none; border-bottom-color:var(--brand); }
+.swatch { width:32px; height:32px; border:1px solid #d1d5db; border-radius:8px; cursor:pointer; }
+.row-tick { opacity:0; display:flex; flex-direction: row;  font:600 14px 'Inter',sans-serif; color:var(--success); gap:6px; }
+.row-tick.show { opacity:1; transition:opacity .30s; display:flex; flex-direction: row; color:var(--success); }
+.icon { border:none; background:transparent; cursor:pointer; width:28px; height:28px; display:grid; place-items:center; color:var(--fg-muted); transition:background .15s; }
+.icon:hover { background:rgba(0,0,0,.05); color:var(--fg); }
+.icon:focus { outline:none; }
+
+/* Saved tick */
+.saved-tick { opacity:0; ; font:600 14px 'Inter',sans-serif; color:var(--success); display:inline-flex; align-items:center; gap:6px; }
+.saved-tick.show { opacity:1; transition:opacity .30s; color:var(--success) }
+
+/* ── buttons ── */
+.btn { width: 180px; border:2px solid currentColor; background:transparent; border-radius:14px; padding:10px 16px; font:600 15px 'Inter',sans-serif; cursor:pointer; transition:.15s; }
+.btn.primary { color:var(--brand); }
+.btn.primary:hover { background:rgba(37,99,235,.06); }
+.btn.danger { color:var(--danger); }
+.btn.danger:hover { background:rgba(239,68,68,.08); }
+.btn:disabled { opacity:.5; cursor:default; border-style:dashed; }
+.btn-row { display:flex; gap:16px; }
+.err { color:var(--danger); font:600 14px 'Inter',sans-serif; }
+
+/* ── footer ── */
+.gs-f { padding:20px 24px 32px; border-top:1px solid rgba(0,0,0,.04); display:flex; justify-content:flex-start; }

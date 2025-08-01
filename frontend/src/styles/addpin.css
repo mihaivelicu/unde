@@ -1,0 +1,232 @@
+/* src/styles/addpin.css */
+
+@import "./theme.css";
+
+/* Always cover the visual viewport */
+.sheet-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.22);
+  opacity:0; pointer-events:none; transition:opacity .28s; z-index:3000;
+}
+.sheet-overlay.open{ opacity:1; pointer-events:auto; }
+
+.sheet-wrapper{
+  position:fixed; left:0; right:0; bottom:0; z-index:3001;
+  height:calc(75vh + env(safe-area-inset-bottom, 0px));
+  transform:translateY(100%); transition:transform .32s cubic-bezier(.2,.9,.2,1);
+}
+@supports (height: 100dvh) {
+  .sheet-wrapper{
+    height:calc(75dvh + env(safe-area-inset-bottom, 0px));
+  }
+}
+.sheet-wrapper.sheet-85{
+  height:calc(85dvh + env(safe-area-inset-bottom, 0px));
+}
+@supports (height: 100dvh) {
+  .sheet-wrapper.sheet-85{
+    height:calc(85dvh + env(safe-area-inset-bottom, 0px));
+  }
+}
+.sheet-wrapper.open{ transform:translateY(0); }
+
+.sheet{
+  height:100%;
+  border-top-left-radius:28px; border-top-right-radius:28px;
+  background:var(--glass);
+  backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px);
+  box-shadow:0 -20px 60px rgba(0,0,0,.20);
+  overflow:hidden;
+}
+
+/* ---------------- AddPin specific ---------------- */
+
+.ap-header{
+  position:relative;
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:12px;
+  padding:0 56px 0 20px;
+  border-bottom:1px solid rgba(0,0,0,.05);
+  background:linear-gradient(to bottom, rgba(255,255,255,.85), rgba(255,255,255,.80));
+}
+.ap-title{
+  margin:0;
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:-0.01em;
+  color:#111827;
+}
+.ap-grabber{
+  position:absolute;
+  top:6px; 
+  left:50%;
+  transform:translateX(-50%);
+  width:48px; 
+  height:6px; 
+  border-radius:9999px;
+  background:rgba(0,0,0,.14);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.35);
+  pointer-events:auto;
+}
+.ap-header { touch-action: none; }
+.ap-grabber {
+  width:48px; height:6px; margin:8px auto 12px; border-radius:9999px;
+  background:#d1d5db; pointer-events:auto; touch-action:none;
+}
+.ap-close{
+  position:absolute; 
+  right:8px; 
+  top:6px;
+  width:40px; 
+  height:40px; 
+  border-radius:12px;
+  border:none; 
+  background:transparent; 
+  color:#6b7280;
+  font-size:28px; 
+  line-height:40px; 
+  cursor:pointer;
+  transition:background .15s ease, color .15s ease, transform .08s ease;
+  pointer-events: auto;
+}
+.ap-close:hover{ background:rgba(0,0,0,.05); color:#111827; }
+.ap-close:active{ transform:scale(.98); }
+
+.ap-sheet{
+  display:grid;
+  grid-template-rows: auto auto 1fr auto;
+  min-height:0;
+}
+.ap-body{
+  min-height:0;
+  overflow:auto;
+  display:flex; flex-direction:column;
+}
+.ap-map .lp-mapBox{
+  height:200px;
+  border-radius:0;
+  box-shadow:var(--shadow-md);
+  background:#f3f4f6;
+}
+.ap-desc {
+    padding: 24px;
+    margin-top: 32px;
+
+}
+.ap-desc-input{
+  width:100%; border:none; outline:none; background:transparent;
+  border-bottom:1px solid #d1d5db;
+  font-size:14px; color:var(--fg);
+  height:20px; max-height:20px;
+  line-height:14px;
+  resize:none; overflow-y:auto; overflow-x:hidden; white-space:pre-wrap;
+}
+.ap-desc-input::placeholder{ color:#5f5f5f; font-size: 18px; }
+
+.ap-add-stack{ display:flex; flex-direction:column; align-items:center; width:110px; }
+.ap-add-counter{ margin-top:6px; font-size:12px; color:#6b7280; }
+.ap-add-stack{ width:auto; }
+
+.ap-photos{ padding: 10px 20px 0 20px; }
+.ap-photo-grid{
+  --gap: clamp(8px, 2vw, 16px);
+  width: calc(75vw + 2 * var(--gap));
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 25vw);
+  grid-auto-rows: 25vw;
+  gap: var(--gap);
+  justify-content: center;
+  overflow: hidden;
+}
+.ap-photo-grid > *:nth-child(n+7){ display:none; }
+
+.ap-photo-thumb,
+.ap-photo-add{
+  width: 25vw; height: 25vw;
+  border-radius: 18px;
+  min-width: 0; min-height: 0;
+}
+
+@media (min-width: 768px) {
+  .ap-photo-thumb,
+  .ap-photo-add{
+    width: 150px; height: 150px;
+  }
+}
+
+/* ★★★ START OF CSS CHANGES ★★★ */
+.ap-photo-add {
+  background: transparent;
+  border: 2px dashed #d1d5db; /* Dotted border */
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: none; /* Removed shadow */
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.ap-photo-add:hover {
+  background-color: rgba(0, 0, 0, 0.03); /* Subtle hover feedback */
+  border-color: #9ca3af;
+}
+
+/* This class was removed from your original file, so we add a new one for the image */
+.ap-photo-add-img {
+  width: 36%;
+  height: 36%;
+  object-fit: contain;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  pointer-events: none; /* Make sure the button underneath is clicked */
+}
+
+.ap-photo-add:hover .ap-photo-add-img {
+  opacity: 0.7;
+}
+/* ★★★ END OF CSS CHANGES ★★★ */
+
+.ap-photo-thumb{
+  position:relative; overflow:hidden;
+  border:1px solid #e5e7eb; box-shadow:var(--shadow-sm);
+}
+.ap-photo-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.ap-photo-remove{
+  position:absolute; top:6px; right:6px;
+  width:28px; height:28px; border-radius:9999px; border:none; cursor:pointer;
+  background:rgba(17,24,39,.85); color:#fff; font-size:18px; line-height:28px;
+}
+
+@media (max-width:420px){
+  .ap-photo-grid{
+    --gap: 12px;
+    width: calc(75vw + 24px);
+  }
+  .ap-photo-thumb, .ap-photo-add{
+    border-radius:16px;
+  }
+}
+
+.ap-footer{
+  display:flex; 
+  align-items:center; 
+  justify-content:center;
+    gap:12px;
+  background:transparent;
+  margin-left: 20px; 
+  margin-right: 20px;
+  border-top:1px solid rgba(0,0,0,.06);
+  padding: 10px 0 20px 0;
+  align-self: flex-end;
+}
+.ap-status-select{ display:none; }
+
+.ap-submit{
+  background:#10b981; color:#fff; border:none; border-radius:16px; padding:14px 24px;
+  font-weight:700; cursor:pointer; box-shadow:var(--shadow-sm);
+  width: 40% !important; font-size: 18px;
+}
+.ap-submit:hover{ filter:brightness(0.96); }
